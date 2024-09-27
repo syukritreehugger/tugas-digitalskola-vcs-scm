@@ -25,11 +25,10 @@ pipeline {
     post {
         always {
             echo 'Build finished'
-            emailext (
-                to: 'forestist.ipad@gmail.com',
-                subject: "Build Notification: ${currentBuild.fullDisplayName}",
-                body: "Build completed with status: ${currentBuild.currentResult}"
-            )
+            emailext to: 'forestist.ipad@gmail.com',
+                 subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER})",
+                 body: "Build ${currentBuild.fullDisplayName} finished with status: ${currentBuild.currentResult}",
+                 attachLog: true
         }
     }
 }
