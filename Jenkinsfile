@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/syukritreehugger/tugas-digitalskola-vcs-scm.git'
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building the application...'
