@@ -25,12 +25,13 @@ pipeline {
     post {
         always {
             echo 'Build finished'
-                emailext(
-                    subject: "${JOB_NAME}.${BUILD_NUMBER} PASSED",
-                    mimeType: 'text/html',
-                    to: "$email",
-                    body: "${JOB_NAME}.${BUILD_NUMBER} PASSED"
-                )
+            // Kirim email notifikasi
+            emailext (
+                to: 'forestist.ipad@gmail.com',
+                subject: "Build Notification: ${currentBuild.fullDisplayName}",
+                body: "Build completed with status: ${currentBuild.currentResult}"
+            )
+        }
     }
 }
 
