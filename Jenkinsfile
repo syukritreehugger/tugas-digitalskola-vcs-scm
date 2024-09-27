@@ -24,14 +24,12 @@ pipeline {
 
     post {
         always {
-            echo 'Build finished'
-            // Kirim email notifikasi
-            emailext (
+            emailext(
                 to: 'forestist.ipad@gmail.com',
-                subject: "Build Notification: ${currentBuild.fullDisplayName}",
-                body: "Build completed with status: ${currentBuild.currentResult}"
+                subject: "Build ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
+                body: "Job ${env.JOB_NAME} Build ${env.BUILD_NUMBER}\nStatus: ${currentBuild.currentResult}\nMore details: ${env.BUILD_URL}",
+                attachLog: true
             )
         }
     }
 }
-
